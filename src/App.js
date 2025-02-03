@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { throttle } from "lodash"; // lodash kütüphanesinden throttle fonksiyonunu kullanıyoruz
-import { Routes, Route, Link } from "react-router-dom";
-import { StaticRouter } from "react-router-dom/server";
+import { MemoryRouter, Routes, Route, Link } from "react-router-dom";
 
 // Bileşenimiz mouse hareketlerini takip eder ve koordinatları ekrana yazdırır.
 // Bazı eksiklikler ve olası hatalar bulunuyor.
@@ -25,7 +24,7 @@ export default function App({ location, context }) {
   return (
     <div className="flex justify-center flex-col items-center py-8">
       <h1 className="text-2xl font-bold pb-4">🐭</h1>
-      <StaticRouter location={location} context={context}>
+      <MemoryRouter location={location} context={context}>
         <nav className="flex justify-center max-w-sm p-4 pb-8 space-x-4">
           <Link className="underline" to="/">
             Home
@@ -41,7 +40,7 @@ export default function App({ location, context }) {
             element={<h1>Mouse&apos;unuzu takip edin!</h1>}
           />
         </Routes>
-      </StaticRouter>
+      </MemoryRouter>
     </div>
   );
 }
