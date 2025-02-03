@@ -49,13 +49,19 @@ function MousePosition() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (typeof window === "undefined") return; // Sunucu tarafında kodu çalıştırma
+    if (typeof window === "undefined") return;
 
     const handleMove = throttle((e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     }, 100); // 100ms'de bir güncelleme yapacak şekilde throttle edildi
     window.addEventListener("pointermove", handleMove);
-    return () => window.removeEventListener("pointermove", handleMove);
+
+    return () => {
+      window.removeEventListener("pointermove", handleMove);
+      if (handleMove.cancel) {
+        handleMove.cancel();
+      }
+    };
   }, []);
 
   return (
