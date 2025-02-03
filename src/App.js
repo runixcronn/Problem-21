@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { throttle } from "lodash"; // lodash kütüphanesinden throttle fonksiyonunu kullanıyoruz
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { StaticRouter } from "react-router-dom/server";
 
 // Bileşenimiz mouse hareketlerini takip eder ve koordinatları ekrana yazdırır.
@@ -21,11 +21,11 @@ import { StaticRouter } from "react-router-dom/server";
 // - Tailwind CSS kullanılarak, mouse koordinatlarını ekranda bir tooltip efektiyle gösterecek stil ekleyin.
 // - Tailwind’in eklenti sistemi ile özel bir shadow-glow efekti tanımlayın ve nasıl eklendiğini açıklayın.
 
-export default function App() {
+export default function App({ location, context }) {
   return (
     <div className="flex justify-center flex-col items-center py-8">
       <h1 className="text-2xl font-bold pb-4">🐭</h1>
-      <StaticRouter>
+      <StaticRouter location={location} context={context}>
         <nav className="flex justify-center max-w-sm p-4 pb-8 space-x-4">
           <Link className="underline" to="/">
             Home
